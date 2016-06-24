@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Stock App</title>
+</head>
+<body ng-app="chadsStockApp">
+	<h1>Chad's Stock APP</h1>
+	<div ng-controller ="mainCtrl">
+		<input ng-model="stock.name"  type="text" placeholder="Enter Your Stock Ticker Here">
+		<button ng-click="getQuote(stock.name)">Submit</button>
+		<p>{{results}}</p>
+		<p>{{decision}}</p>
+	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="scripts/app.js"></script>
+</body>
+</html>
