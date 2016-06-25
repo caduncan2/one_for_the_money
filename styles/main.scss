@@ -1,0 +1,40 @@
+body {
+	background: slategrey;
+}
+
+h1	{
+	text-align: center;
+	color: #A8C954;
+	font-size: 3em;
+}
+
+.holder {
+	img{
+		max-width: 100%;
+		margin: 0 auto;
+		display: block;
+	}
+
+	input {
+		display: block;
+	    margin: 0 auto;
+	    margin-top: 20px;
+	    font-size: 1em;
+	    padding: 10px;
+	    text-align: center;
+	    width: 300px;
+	}
+
+	button {
+		display: block;
+	    margin: 0 auto;
+	    font-size: 1em;
+	    background: lightgreen;
+	    border: none;
+	    border-radius: 5px;
+	    margin-top: 20px;
+	    width: 150px;
+	    color: white;
+	    padding: 10px;
+	}
+}

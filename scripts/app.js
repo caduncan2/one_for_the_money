@@ -6,13 +6,19 @@ angular.module('chadsStockApp', [])
 
 	$scope.getQuote = function(stockName) {
 		stockService.getQuote(function(response){
-			var results = response.data.query.results;
+			var results = response.data.query.results.quote;
 			var symbol = response.data.query.results.quote.symbol;
-			var ask = response.data.query.results.quote.Ask;
-			console.log(response.data);
-			$scope.quote = symbol;
-			$scope.ask = ask;
-			$scope.results = results
+			var ask = response.data.query.results.quote.Ask
+			for (var metric in results) {
+				// $scope.ask = results.Ask;
+			
+				console.log(metric);
+
+				// console.log(metric + ":" + results[metric]);
+				// console.log($scope.metric);
+				// console.log(results["BookValue"])
+			}
+		
 			if(ask<100) {
 				$scope.decision = "BUY!"
 			} else {
