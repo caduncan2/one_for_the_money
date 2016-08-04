@@ -36,5 +36,27 @@ h1	{
 	    width: 150px;
 	    color: white;
 	    padding: 10px;
+
+	    .sell {
+	    	background: tomato;
+	    }
+	}
+
+	ul {
+		list-style: none;
+	    color: white;
+	    text-align: center;
+
+	    li {
+	    	font-size: 1.25em;
+
+	    	&.valid {
+	    		color: lightgreen;
+	    	}
+
+	    	&.invalid {
+	    		color: tomato;
+	    	}
+	    }
 	}
 }

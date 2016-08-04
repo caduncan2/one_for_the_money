@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>My Stock App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="styles/main.css">
+	<script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
 </head>
 <body ng-app="chadsStockApp">
 	<h1>Chad's Stock App</h1>
@@ -10,6 +12,8 @@
 		<img src="img/money-bag.png">
 		<p>{{results}}</p>
 		<button id="decider"><p>{{decision}}</p></button>
+		<ul id="resultsList">
+		</ul>
 		<input ng-model="stock.name"  type="text" placeholder="Enter Your Stock Ticker Here">
 		<button ng-click="getQuote(stock.name)">Submit</button>
 		<p>{{ask}}</p>

@@ -9,21 +9,64 @@ angular.module('chadsStockApp', [])
 			var results = response.data.query.results.quote;
 			var symbol = response.data.query.results.quote.symbol;
 			var ask = response.data.query.results.quote.Ask
-			for (var metric in results) {
-				// $scope.ask = results.Ask;
-			
-				console.log(metric);
-
-				// console.log(metric + ":" + results[metric]);
-				// console.log($scope.metric);
-				// console.log(results["BookValue"])
-			}
+			var avgDaily = parseInt(results.AverageDailyVolume);
+			var volume = parseInt(results.Volume);
+			var fiftyDay = parseInt(results.FiftydayMovingAverage);
+			var twoHundredDay = parseInt(results.TwoHundreddayMovingAverage);
+			var volumePercentage = (((volume - avgDaily)/avgDaily) * 100).toFixed(2);
+			var resultsList = $('#resultsList');
+			function appendListPostive(metricString,metric,comparingMetric,comparingMetricString) {
+					resultsList.append('<li class="valid"> The ' + metricString + ' of ' + metric + ' is greater than the current ' + comparingMetricString + ' of ' + comparingMetric + '</li>');			
+				}
+			function appendListNegative(metricString,metric,comparingMetric,comparingMetricString) {
+				resultsList.append('<li class="invalid"> The ' + metricString + ' of ' + metric + ' is less than the current ' +  comparingMetricString + ' of ' + comparingMetric + '</li>');
+				}			
 		
-			if(ask<100) {
-				$scope.decision = "BUY!"
-			} else {
-				$scope.decision = "SELL!"
+			if(fiftyDay > ask || twoHundredDay > ask || volumePercentage > 30) {
+				$scope.decision = "BUY!";
+				console.log(twoHundredDay + " " + fiftyDay + " " + ask);
+				if (fiftyDay > ask === true) {
+					appendListPostive("Fifty Day Average",fiftyDay,ask,"asking price");
+				} else {
+					appendListNegative("Fifty Day Average",fiftyDay,ask,"asking price");
+
+				}
+
+				if (twoHundredDay > ask === true) {
+					appendListPostive("Two-Hundred Day Average",twoHundredDay,ask,"asking price");
+						console.log(twoHundredDay + " " + fiftyDay + " " + ask);
+				} else {
+					appendListNegative("Two-Hundred Day Average",twoHundredDay,ask,"asking price");
+				}
+
+				if (volumePercentage < 30 === true) {
+					resultsList.append('<li>The volume percentage difference of ' + volumePercentage + '% is below the 30% threshold</li>');
+				} else {
+					resultsList.append('<li>The volume percentage difference of ' + volumePercentage + '% is greater than the 30% threshold</li>');
+				} 
+			} else { 
+				$scope.decision = "Don't Buy!"
+				if (fiftyDay > ask === true) {
+					appendListPostive("Fifty Day Average",fiftyDay,ask, "asking price");
+				} else {
+					appendListNegative("Fifty Day Average",fiftyDay,ask,"asking price");
+
+				}
+
+				if (twoHundredDay > ask === true) {
+					appendListPostive("Two-Hundred Day Average", twoHundredDay,ask,"asking price");
+				} else {
+					appendListNegative("Two-Hundred Day Average", twoHundredDay,ask, "asking price");
+				}
+
+				if (volumePercentage < 30 === true) {
+					resultsList.append('<li class="valid">The volume percentage difference of ' + volumePercentage + '% is below the 30% threshold</li>');
+				} else {
+					resultsList.append('<li class=:invalid">The volume percentage difference of ' + volumePercentage + '% is greater than the 30% threshold</li>');
+				} 
 			}
+
+			resultsList.append('<li> The current volume of ' + symbol + ' is ' + volume + ' compared to the average daily volume of ' + avgDaily + ' </li>')
 
 		}, stockName)
 	}

@@ -29,5 +29,17 @@ h1 {
   width: 150px;
   color: white;
   padding: 10px; }
+  .holder button .sell {
+    background: tomato; }
+.holder ul {
+  list-style: none;
+  color: white;
+  text-align: center; }
+  .holder ul li {
+    font-size: 1.25em; }
+    .holder ul li.valid {
+      color: lightgreen; }
+    .holder ul li.invalid {
+      color: tomato; }
 
 /*# sourceMappingURL=main.css.map */
